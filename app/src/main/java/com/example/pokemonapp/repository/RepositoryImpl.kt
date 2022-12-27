@@ -49,14 +49,12 @@ class RepositoryImpl @Inject constructor(private val remoteDataSource: PokemonRe
                         ),
                         character.data.sprites?.frontDefault
                     )
-                    Log.i("FromRemote", "returns")
+                    Log.i("FromLocal", returnData.toString())
                 }
             }
         } else {
             returnData = localDataSource.getPokemon(name)
-            Log.i("Character id", returnData.id.toString())
-            Log.i("FromLocal", "returns")
-            localDataSource.insert(returnData)
+            Log.i("FromLocal", returnData.toString())
         }
         return returnData
     }
@@ -64,15 +62,14 @@ class RepositoryImpl @Inject constructor(private val remoteDataSource: PokemonRe
     override suspend fun getPokemonList(offset: Int, limit: Int): List<Pokemon> {
         var returnData = ArrayList<Pokemon>()
         if (CheckInternetConnection.connectivityStatus(context)) {
-            Log.i("FromRemote", "returns")
             val response = withContext(Dispatchers.IO) { remoteDataSource.getPokemonList(offset, limit) }
             withContext(Dispatchers.IO) {
                 if(response.status == Resource.Status.SUCCESS){
                     if (response.data != null){
                         for (elements in response.data.results){
                             returnData.add(Pokemon(
-                                "/-?[0-9]+/$".toRegex()
-                                    .find(elements.url)?.value?.filter { item -> item.isDigit() || item == '-' }
+                                "/[0-9]+/$".toRegex()
+                                    .find(elements.url)?.value?.filter { item -> item.isDigit()}
                                     ?.toInt(),
                                 elements.name,
                                 null, null, null, null
@@ -81,11 +78,11 @@ class RepositoryImpl @Inject constructor(private val remoteDataSource: PokemonRe
                         localDataSource.insertAll(returnData)
                     }
                 }
+                Log.i("FromRemote", returnData.toString())
             }
         } else {
             returnData = withContext(Dispatchers.IO) { localDataSource.getAllPokemons(offset, limit) } as ArrayList<Pokemon>
-            localDataSource.insertAll(returnData)
-            Log.i("FromLocal", "returns")
+            Log.i("FromRemote", returnData.toString())
         }
         return returnData
     }

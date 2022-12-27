@@ -1,6 +1,7 @@
 package com.example.pokemonapp.data.remote
 
 import com.example.pokemonapp.utils.Resource
+import retrofit2.HttpException
 import retrofit2.Response
 
 abstract class BaseDataSource {
@@ -13,7 +14,7 @@ abstract class BaseDataSource {
                 if (body != null) return Resource.success(body)
             }
             return error(" ${response.code()} ${response.message()}")
-        } catch (e: Exception) {
+        } catch (e: HttpException) {
             return error(e.message ?: e.toString())
         }
     }
