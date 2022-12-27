@@ -3,7 +3,6 @@ package com.example.pokemonapp.data.entities
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.ByteArrayOutputStream
 
 @Entity(tableName = "pokemon")
 data class Pokemon(

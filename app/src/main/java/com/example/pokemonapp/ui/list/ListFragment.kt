@@ -46,6 +46,8 @@ class ListFragment: Fragment(R.layout.fragment_list) {
                     data.add(element)
                     element.id?.let { id -> adapter.notifyItemInserted(id) }
                 }
+            }else{
+                binding.HomeError.visibility = View.VISIBLE
             }
         }
 

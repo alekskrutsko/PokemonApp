@@ -32,5 +32,5 @@ data class Type(
 )
 
 data class Sprites(
-    @field:Json(name = "front_default") val frontDefault : String?
+    @Json(name = "front_default") val frontDefault : String?
 )
