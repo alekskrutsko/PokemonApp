@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.pokemonapp.data.local.PokemonDB
 import com.example.pokemonapp.data.local.PokemonDao
-import com.example.pokemonapp.data.remote.PokemonRemoteDataSource
+import com.example.pokemonapp.data.remote.PokemonRemoteDataSourceImpl
 import com.example.pokemonapp.data.remote.PokemonService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -71,6 +71,6 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePokemonRemoteDataSource(pokemonService: PokemonService) = PokemonRemoteDataSource(pokemonService)
+    fun providePokemonRemoteDataSource(pokemonService: PokemonService) = PokemonRemoteDataSourceImpl(pokemonService)
 
 }

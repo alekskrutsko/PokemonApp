@@ -1,10 +1,11 @@
-package com.example.pokemonapp.repository
+package com.example.pokemonapp.data.repository
 
 import android.content.Context
 import android.util.Log
 import com.example.pokemonapp.data.entities.Pokemon
 import com.example.pokemonapp.data.local.PokemonDao
 import com.example.pokemonapp.data.remote.PokemonRemoteDataSource
+import com.example.pokemonapp.domain.repository.Repository
 import com.example.pokemonapp.utils.CheckInternetConnection
 import com.example.pokemonapp.utils.Resource
 import kotlinx.coroutines.Dispatchers

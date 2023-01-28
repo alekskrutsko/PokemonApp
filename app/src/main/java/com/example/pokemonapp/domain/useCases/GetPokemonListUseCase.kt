@@ -1,6 +1,6 @@
 package com.example.pokemonapp.domain.useCases
 
-import com.example.pokemonapp.repository.Repository
+import com.example.pokemonapp.domain.repository.Repository
 import javax.inject.Inject
 
 class GetPokemonListUseCase @Inject constructor(private val repository : Repository) {

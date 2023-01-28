@@ -1,4 +1,4 @@
-package com.example.pokemonapp.ui.detail
+package com.example.pokemonapp.presentation.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailsViewModel @Inject constructor(private val getPokemonUseCase: GetPokemonUseCase): ViewModel() {
+class PokemonDetailsViewModel @Inject constructor(private val getPokemonUseCase: GetPokemonUseCase): ViewModel() {
 
     val pokemon = MutableLiveData<Pokemon>()
 

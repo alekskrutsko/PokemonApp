@@ -8,7 +8,7 @@
             type="com.example.pokemonapp.data.entities.Pokemon" />
         <variable
             name="clickListener"
-            type="com.example.pokemonapp.ui.list.PokemonListener" />
+            type="com.example.pokemonapp.presentation.list.OnClickListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

@@ -1,4 +1,4 @@
-package com.example.pokemonapp.ui.list
+package com.example.pokemonapp.presentation.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonapp.data.entities.Pokemon
 import com.example.pokemonapp.databinding.ListViewItemBinding
 
-class PokemonListAdapter(private val pokemonList: List<Pokemon>, private val clickListener: PokemonListener): RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder>() {
+class PokemonListAdapter(private val pokemonList: List<Pokemon>, private val clickListener: OnClickListener<Pokemon>): RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder>() {
 
     class PokemonViewHolder(var binding: ListViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(clickListener: PokemonListener, pokemon : Pokemon) {
+        fun bind(clickListener: OnClickListener<Pokemon>, pokemon : Pokemon) {
             binding.pokemon = pokemon
             binding.clickListener = clickListener
             binding.executePendingBindings()

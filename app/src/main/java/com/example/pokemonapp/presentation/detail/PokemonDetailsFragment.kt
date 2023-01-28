@@ -1,4 +1,4 @@
-package com.example.pokemonapp.ui.detail
+package com.example.pokemonapp.presentation.detail
 
 import android.os.Bundle
 import android.util.Log
@@ -17,10 +17,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class DetailsFragment: Fragment(R.layout.fragment_detail) {
+class PokemonDetailsFragment: Fragment(R.layout.fragment_detail) {
 
-    private val navArgs by navArgs<DetailsFragmentArgs>()
-    private val viewModel: DetailsViewModel by activityViewModels()
+    private val navArgs by navArgs<PokemonDetailsFragmentArgs>()
+    private val viewModel: PokemonDetailsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

@@ -1,4 +1,4 @@
-package com.example.pokemonapp.repository
+package com.example.pokemonapp.domain.repository
 
 import com.example.pokemonapp.data.entities.Pokemon
 import javax.inject.Singleton

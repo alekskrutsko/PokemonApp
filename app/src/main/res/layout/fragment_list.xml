@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.pokemonapp.ui.list.ListViewModel" />
+            type="com.example.pokemonapp.presentation.list.PokemonListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
 
 
         <LinearLayout
-            android:id="@+id/HomeError"
+            android:id="@+id/HomePageInternetError"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
