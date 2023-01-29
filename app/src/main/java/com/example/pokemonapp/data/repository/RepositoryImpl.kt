@@ -2,7 +2,7 @@ package com.example.pokemonapp.data.repository
 
 import android.content.Context
 import android.util.Log
-import com.example.pokemonapp.data.entities.Pokemon
+import com.example.pokemonapp.domain.model.Pokemon
 import com.example.pokemonapp.data.local.PokemonDao
 import com.example.pokemonapp.data.remote.PokemonRemoteDataSource
 import com.example.pokemonapp.domain.repository.Repository
@@ -32,11 +32,8 @@ class RepositoryImpl @Inject constructor(private val remoteDataSource: PokemonRe
                             character.data.name,
                             character.data.weight,
                             character.data.height,
-                            character.data.types?.joinToString(
-                                separator = ", ",
-                                transform = { it.type?.name.toString() }
-                            ),
-                            character.data.sprites?.frontDefault
+                            character.data.types,
+                            character.data.sprites
                         )
                     )
                     returnData = Pokemon(
@@ -44,11 +41,8 @@ class RepositoryImpl @Inject constructor(private val remoteDataSource: PokemonRe
                         character.data.name,
                         character.data.weight,
                         character.data.height,
-                        character.data.types?.joinToString(
-                            separator = ", ",
-                            transform = { it.type?.name.toString() }
-                        ),
-                        character.data.sprites?.frontDefault
+                        character.data.types,
+                        character.data.sprites
                     )
                     Log.i("FromLocal", returnData.toString())
                 }

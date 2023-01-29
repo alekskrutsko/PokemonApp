@@ -3,7 +3,7 @@ package com.example.pokemonapp.presentation.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pokemonapp.data.entities.Pokemon
+import com.example.pokemonapp.domain.model.Pokemon
 import com.example.pokemonapp.databinding.ListViewItemBinding
 
 class PokemonListAdapter(private val pokemonList: List<Pokemon>, private val clickListener: OnClickListener<Pokemon>): RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder>() {

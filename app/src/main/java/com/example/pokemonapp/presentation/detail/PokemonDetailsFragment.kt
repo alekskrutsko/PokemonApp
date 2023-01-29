@@ -39,18 +39,21 @@ class PokemonDetailsFragment: Fragment(R.layout.fragment_detail) {
         viewModel.getPokemon(navArgs.pokemonName)
         Log.d("pokemonName", navArgs.pokemonName)
 
-        viewModel.pokemon.observe( this.viewLifecycleOwner) { pokemon ->
+        viewModel.pokemon.observe(this.viewLifecycleOwner) { pokemon ->
             // picture download
             binding.apply {
                 Glide.with(root)
-                    .load(pokemon.image)
+                    .load(pokemon.sprites?.frontDefault)
                     .apply(RequestOptions().override(300, 300))
                     .error(androidx.appcompat.R.drawable.abc_ab_share_pack_mtrl_alpha)
                     .into(binding.image)
                 name.text = pokemon.name?.capitalize()
                 height.text = "Height: ${pokemon.height?.toString()} cm"
                 weight.text = "Weight: ${pokemon.weight.toString()} kg"
-                types.text = "Type: ${pokemon.types}"
+                types.text = "Type: ${pokemon.types?.joinToString(
+                                separator = ", ",
+                                transform = { it.type?.name.toString() }
+                            )}"
             }
         }
 

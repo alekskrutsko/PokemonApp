@@ -1,7 +1,7 @@
 package com.example.pokemonapp.data.local
 
 import androidx.room.*
-import com.example.pokemonapp.data.entities.Pokemon
+import com.example.pokemonapp.domain.model.Pokemon
 
 @Dao
 interface PokemonDao {

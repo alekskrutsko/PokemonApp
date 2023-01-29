@@ -3,7 +3,7 @@ package com.example.pokemonapp.presentation.list
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokemonapp.data.entities.Pokemon
+import com.example.pokemonapp.domain.model.Pokemon
 import com.example.pokemonapp.domain.useCases.GetPokemonListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

@@ -1,6 +1,6 @@
 package com.example.pokemonapp.domain.repository
 
-import com.example.pokemonapp.data.entities.Pokemon
+import com.example.pokemonapp.domain.model.Pokemon
 import javax.inject.Singleton
 
 @Singleton
