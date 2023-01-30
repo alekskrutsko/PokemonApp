@@ -1,5 +1,7 @@
 package com.example.pokemonapp.presentation.list
 
-interface OnClickListener<T> {
-    fun onClick(t : T)
+import com.example.pokemonapp.domain.model.Pokemon
+
+interface OnClickListener{
+    fun onClick(pokemon : Pokemon)
 }

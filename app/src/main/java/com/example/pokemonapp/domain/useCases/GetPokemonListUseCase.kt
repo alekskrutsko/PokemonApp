@@ -5,5 +5,4 @@ import javax.inject.Inject
 
 class GetPokemonListUseCase @Inject constructor(private val repository : Repository) {
     suspend operator fun invoke(offset: Int, limit: Int) = repository.getPokemonList(offset, limit)
-
 }

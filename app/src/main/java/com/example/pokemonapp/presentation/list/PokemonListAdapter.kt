@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonapp.domain.model.Pokemon
 import com.example.pokemonapp.databinding.ListViewItemBinding
 
-class PokemonListAdapter(private val pokemonList: List<Pokemon>, private val clickListener: OnClickListener<Pokemon>): RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder>() {
+class PokemonListAdapter(private val pokemonList: List<Pokemon>, private val clickListener: OnClickListener): RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder>() {
 
     class PokemonViewHolder(var binding: ListViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(clickListener: OnClickListener<Pokemon>, pokemon : Pokemon) {
+        fun bind(clickListener: OnClickListener, pokemon : Pokemon) {
             binding.pokemon = pokemon
             binding.clickListener = clickListener
             binding.executePendingBindings()
