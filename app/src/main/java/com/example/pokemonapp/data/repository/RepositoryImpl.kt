@@ -100,11 +100,13 @@ class RepositoryImpl @Inject constructor(
         } else {
             try {
                 returnData = withContext(Dispatchers.IO) {
-                    localDataSource.getAllPokemons(
-                        offset,
-                        limit
+                    java.util.ArrayList(
+                        localDataSource.getAllPokemons(
+                            offset,
+                            limit
+                        )
                     )
-                } as ArrayList<Pokemon>
+                }
 
             } catch (e: SQLiteException) {
                 Log.e("error", "database reading error", e)

@@ -63,7 +63,7 @@ class PokemonListFragment: Fragment(R.layout.fragment_list) {
                     }
                 }
                 Resource.Status.ERROR -> {
-                    Toast.makeText(requireContext(), "Произошла ошибка: $response.message", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Произошла ошибка: ${response.message}", Toast.LENGTH_LONG).show()
                 }
                 else -> {}
             }

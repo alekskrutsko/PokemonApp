@@ -64,7 +64,7 @@ class PokemonDetailsFragment: Fragment(R.layout.fragment_detail) {
                     }
                 }
                 Resource.Status.ERROR -> {
-                    Toast.makeText(requireContext(), "Произошла ошибка: $response.message", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "Произошла ошибка: ${response.message}", Toast.LENGTH_LONG).show()
                 }
                 else -> {}
             }
