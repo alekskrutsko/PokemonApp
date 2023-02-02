@@ -10,3 +10,5 @@
 - ViewModel
 - Moshi
 - Glide
+- JUnit 5
+- Mockito

@@ -1,6 +1,8 @@
 *.iml
 .gradle
-#/local.properties
+#/local.properties  //commented due to an error while building the project on examiner's laptop,
+# I assume it occured because local.properties file wasn't generated automatically on examiner's laptop,
+# but if it is present in the repository the android studio will ask to update it
 /.idea/caches
 /.idea/libraries
 /.idea/modules.xml
