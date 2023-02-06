@@ -7,14 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.findNavController
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.pokemonapp.R
 import com.example.pokemonapp.databinding.FragmentDetailBinding
+import com.example.pokemonapp.presentation.list.PokemonListFragmentDirections
+import com.example.pokemonapp.presentation.list.PokemonListViewModel
 import com.example.pokemonapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,10 +39,6 @@ class PokemonDetailsFragment: Fragment(R.layout.fragment_detail) {
 
         val toolbar = binding.toolbar
         toolbar.setNavigationIcon(R.drawable.ic_back_button)
-
-        toolbar.setNavigationOnClickListener {
-            binding.root.findNavController().navigateUp()
-        }
 
         viewModel.getPokemon(navArgs.pokemonName)
         Log.d("pokemonName", navArgs.pokemonName)
@@ -75,5 +75,26 @@ class PokemonDetailsFragment: Fragment(R.layout.fragment_detail) {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.tasksEvent.collect { event ->
+                when (event) {
+                    is PokemonDetailsViewModel.TasksEvent.NavigateToPokeListFragment -> {
+                        findNavController().popBackStack()
+                    }
+                }
+            }
+        }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
+    }
 
 }

@@ -3,16 +3,16 @@ package com.example.pokemonapp.presentation.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pokemonapp.domain.model.Pokemon
 import com.example.pokemonapp.databinding.ListViewItemBinding
+import com.example.pokemonapp.domain.model.Pokemon
 
-class PokemonListAdapter(private val pokemonList: List<Pokemon>, private val clickListener: OnClickListener): RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder>() {
+class PokemonListAdapter(private val pokemonList: List<Pokemon>, private val viewModel: PokemonListViewModel): RecyclerView.Adapter<PokemonListAdapter.PokemonViewHolder>() {
 
     class PokemonViewHolder(var binding: ListViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(clickListener: OnClickListener, pokemon : Pokemon) {
+        fun bind(viewModel: PokemonListViewModel, pokemon : Pokemon) {
             binding.pokemon = pokemon
-            binding.clickListener = clickListener
+            binding.pokemonListViewModel = viewModel
             binding.executePendingBindings()
         }
     }
@@ -26,9 +26,8 @@ class PokemonListAdapter(private val pokemonList: List<Pokemon>, private val cli
 
     override fun onBindViewHolder(holder : PokemonViewHolder, position : Int) {
         val pokemon = pokemonList[position]
-        holder.bind(clickListener, pokemon)
+        holder.bind(viewModel, pokemon)
     }
-
 
     override fun getItemCount(): Int =  pokemonList.size
 }

@@ -8,6 +8,8 @@ import com.example.pokemonapp.domain.model.Pokemon
 import com.example.pokemonapp.domain.useCases.GetPokemonListUseCase
 import com.example.pokemonapp.utils.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,6 +18,9 @@ import javax.inject.Inject
 class PokemonListViewModel @Inject constructor(private val getPokemonListUseCase: GetPokemonListUseCase): ViewModel() {
 
     var pokemons = MutableLiveData<Resource<List<Pokemon>>>()
+
+    private val tasksEventChannel = Channel<TasksEvent>()
+    val tasksEvent = tasksEventChannel.receiveAsFlow()
 
     init {
         getPokemonList(0, 30)
@@ -31,5 +36,13 @@ class PokemonListViewModel @Inject constructor(private val getPokemonListUseCase
                 Log.e("error","getPokemonList error", e)
             }
         }
+    }
+
+    fun onPokemonSelected(pokemon:Pokemon) = viewModelScope.launch {
+        tasksEventChannel.send(TasksEvent.NavigateToPokeDetailsFragment(pokemon.name!!))
+    }
+
+    sealed class TasksEvent {
+        data class NavigateToPokeDetailsFragment(val pokemonName: String) : TasksEvent()
     }
 }

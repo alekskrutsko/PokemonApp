@@ -7,8 +7,8 @@
             name="pokemon"
             type="com.example.pokemonapp.domain.model.Pokemon" />
         <variable
-            name="clickListener"
-            type="com.example.pokemonapp.presentation.list.OnClickListener" />
+            name="pokemonListViewModel"
+            type="com.example.pokemonapp.presentation.list.PokemonListViewModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:onClick="@{() -> clickListener.onClick(pokemon)}"
+        android:onClick="@{() -> pokemonListViewModel.onPokemonSelected(pokemon)}"
         app:cardElevation="4dp"
         app:cardCornerRadius="4dp">
 

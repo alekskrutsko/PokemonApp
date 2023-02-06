@@ -1,10 +1,8 @@
-package com.example.pokemonapp.presentation
+package com.example.pokemonapp.presentation.detail
 
 import com.example.pokemonapp.domain.useCases.GetPokemonUseCase
-import com.example.pokemonapp.presentation.detail.PokemonDetailsViewModel
 import com.nhaarman.mockitokotlin2.mock
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.resetMain

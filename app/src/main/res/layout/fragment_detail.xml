@@ -19,6 +19,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="#FF8C00"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:navigationOnClickListener="@{() -> viewModel.onBackPressed()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
