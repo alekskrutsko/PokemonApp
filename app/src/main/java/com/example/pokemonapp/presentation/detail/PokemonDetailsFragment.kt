@@ -13,12 +13,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.example.pokemonapp.R
 import com.example.pokemonapp.databinding.FragmentDetailBinding
-import com.example.pokemonapp.presentation.list.PokemonListFragmentDirections
-import com.example.pokemonapp.presentation.list.PokemonListViewModel
+import com.example.pokemonapp.utils.GlideUtils
 import com.example.pokemonapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,11 +46,7 @@ class PokemonDetailsFragment: Fragment(R.layout.fragment_detail) {
                     val pokemon = response.data
                     // picture download
                     binding.apply {
-                        Glide.with(root)
-                            .load(pokemon?.sprites?.frontDefault)
-                            .apply(RequestOptions().override(300, 300))
-                            .error(androidx.appcompat.R.drawable.abc_ab_share_pack_mtrl_alpha)
-                            .into(binding.image)
+                        GlideUtils.loadImage(binding.image, pokemon?.sprites?.frontDefault)
                         name.text = pokemon?.name?.capitalize()
                         height.text = "Height: ${pokemon?.height?.toString()} cm"
                         weight.text = "Weight: ${pokemon?.weight.toString()} kg"
