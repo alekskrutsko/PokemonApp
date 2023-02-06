@@ -9,18 +9,19 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemonapp.R
-import com.example.pokemonapp.domain.model.Pokemon
 import com.example.pokemonapp.databinding.FragmentListBinding
+import com.example.pokemonapp.domain.model.Pokemon
 import com.example.pokemonapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val limit = 30
 
 @AndroidEntryPoint
-class PokemonListFragment: Fragment(R.layout.fragment_list) {
+class PokemonListFragment: Fragment(R.layout.fragment_list){
 
     private var data = ArrayList<Pokemon>()
     private val viewModel: PokemonListViewModel by activityViewModels()
@@ -35,17 +36,7 @@ class PokemonListFragment: Fragment(R.layout.fragment_list) {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.pokemonRecyclerView.adapter =
-            PokemonListAdapter(data, object : OnClickListener{
-                override fun onClick(pokemon: Pokemon) {
-                    val direction = pokemon.name?.let {
-                        PokemonListFragmentDirections.actionPokeListFragmentToPokeDetailsFragment(
-                            it
-                        )
-                    }
-                    findNavController().navigate(direction!!)
-
-                }
-            })
+            PokemonListAdapter(data, viewModel)
 
         val adapter = binding.pokemonRecyclerView.adapter as PokemonListAdapter
         viewModel.pokemons.observe(viewLifecycleOwner) { response ->
@@ -73,6 +64,24 @@ class PokemonListFragment: Fragment(R.layout.fragment_list) {
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.tasksEvent.collect { event ->
+                when (event) {
+                    is PokemonListViewModel.TasksEvent.NavigateToPokeDetailsFragment -> {
+                        val direction =
+                            PokemonListFragmentDirections.actionPokeListFragmentToPokeDetailsFragment(
+                                event.pokemonName
+                            )
+                        findNavController().navigate(direction)
+                    }
+                }
+            }
+        }
     }
 
     private fun setupScrollListener(binding: FragmentListBinding) {

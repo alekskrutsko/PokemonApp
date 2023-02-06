@@ -1,14 +1,12 @@
-package com.example.pokemonapp.useCases
+package com.example.pokemonapp.domain.useCases
 
 import com.example.pokemonapp.domain.model.Pokemon
 import com.example.pokemonapp.domain.model.PokemonType
 import com.example.pokemonapp.domain.model.Sprites
 import com.example.pokemonapp.domain.model.Type
 import com.example.pokemonapp.domain.repository.Repository
-import com.example.pokemonapp.domain.useCases.GetPokemonUseCase
 import com.nhaarman.mockitokotlin2.mock
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
